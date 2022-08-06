@@ -1,7 +1,7 @@
-using AppUsers.Domain.Core.Interfaces.Services;
 using AppUsers.Domain.Infra;
 using AppUsers.Domain.Infra.Context;
-using AppUsers.Domain.Interfaces.Repositories.UnitOfWork;
+using AppUsers.Domain.Interfaces.Services;
+using AppUsers.Domain.Interfaces.UnitOfWork;
 using AppUsers.Domain.Services;
 
 var builder = WebApplication.CreateBuilder(args);

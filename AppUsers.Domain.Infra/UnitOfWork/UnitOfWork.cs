@@ -1,12 +1,7 @@
-﻿using AppUsers.Domain.Core.Interfaces.Repositories;
-using AppUsers.Domain.Infra.Context;
+﻿using AppUsers.Domain.Infra.Context;
 using AppUsers.Domain.Infra.Repositories;
-using AppUsers.Domain.Interfaces.Repositories.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using AppUsers.Domain.Interfaces.Repositories;
+using AppUsers.Domain.Interfaces.UnitOfWork;
 
 namespace AppUsers.Domain.Infra
 {
@@ -20,6 +15,7 @@ namespace AppUsers.Domain.Infra
         {
             _appUsersContext = appUsersContext;
         }
+
         public IUserRepository UserRepository
         {
             get => _userRepository != null ? _userRepository : _userRepository = new UserRepository(_appUsersContext);

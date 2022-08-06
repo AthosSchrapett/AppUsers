@@ -1,4 +1,5 @@
-﻿using AppUsers.Domain.Models;
+﻿using AppUsers.Domain.Interfaces.Services;
+using AppUsers.Domain.Models;
 using AppUsers.Domain.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ namespace AppUsers.Web.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
 
         [HttpGet]
         public IActionResult UserGet()

@@ -1,12 +1,12 @@
-﻿using AppUsers.Domain.Core.Interfaces.Services;
-using AppUsers.Domain.Infra;
+﻿using AppUsers.Domain.Interfaces.Services;
+using AppUsers.Domain.Interfaces.UnitOfWork;
 using AppUsers.Domain.Models;
 
 namespace AppUsers.Domain.Services
 {
     public class UserService : IUserService
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public void AddUser(User user)
         {

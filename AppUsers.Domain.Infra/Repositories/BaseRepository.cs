@@ -1,10 +1,5 @@
-﻿using AppUsers.Domain.Core.Interfaces.Repositories;
-using AppUsers.Domain.Infra.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AppUsers.Domain.Infra.Context;
+using AppUsers.Domain.Interfaces.Repositories;
 
 namespace AppUsers.Domain.Infra.Repositories
 {
