@@ -12,6 +12,11 @@ namespace AppUsers.Web.Controllers
     {
         private readonly IUserService _userService;
 
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [HttpGet]
         public IActionResult UserGet()
         {
@@ -25,29 +30,64 @@ namespace AppUsers.Web.Controllers
         [HttpGet("{id}")]
         public IActionResult UserGet(int id)
         {
-            var user = _userService.GetUserById(id);
+            try
+            {
+                var user = _userService.GetUserById(id);
 
-            if (user == null)
-                return NotFound();
-            return Ok(user);
+                if (user == null)
+                    return NotFound();
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpPost]
-        public void UserPost([FromBody] User user)
+        public IActionResult UserPost([FromBody] User user)
         {
-            _userService.AddUser(user);
+            try
+            {
+                if (DateIsValid(user.DataNascimento))
+                    _userService.AddUser(user);
+                return Ok(user);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpPut("{id}")]
-        public void UserPut([FromBody] User user)
+        public void UserPut(int id, [FromBody] User user)
         {
-            _userService.UpdateUser(user);
+            try
+            {
+                _userService.UpdateUser(user);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         [HttpDelete("{id}")]
         public void UserDelete(int id)
         {
-            _userService.DeleteUser(id);
+            try
+            {
+                _userService.DeleteUser(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        private bool DateIsValid(DateTime dataNascimento)
+        {
+            return dataNascimento < DateTime.Now ? true : throw new Exception("Data de Nascimento Invalida");
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace AppUsers.Domain.Interfaces.UnitOfWork
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IUserRepository UserRepository { get; }
         public Task<bool> Commit();

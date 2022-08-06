@@ -32,12 +32,14 @@ namespace AppUsers.Domain.Infra
             catch (Exception ex)
             {
                 Rollback();
-                success = false;
+                throw new Exception(ex.Message);
             }
 
             return Task.FromResult(success);
         }
 
         public Task Rollback() => Task.CompletedTask;
+
+        public void Dispose() => _appUsersContext.Dispose();
     }
 }

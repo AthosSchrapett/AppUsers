@@ -8,9 +8,15 @@ namespace AppUsers.Domain.Services
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        public UserService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
         public void AddUser(User user)
         {
             _unitOfWork.UserRepository.Add(user);
+            _unitOfWork.Commit();
         }        
 
         public IEnumerable<User> GetAllUsers()

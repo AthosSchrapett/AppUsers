@@ -12,6 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserService, UserService>();
+
 builder.Services.AddSqlServer<AppUsersContext>(builder.Configuration["ConnectionString:AppUsersBD"]);
 
 var app = builder.Build();

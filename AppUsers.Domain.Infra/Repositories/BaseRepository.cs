@@ -1,5 +1,6 @@
 ﻿using AppUsers.Domain.Infra.Context;
 using AppUsers.Domain.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppUsers.Domain.Infra.Repositories
 {
@@ -24,7 +25,7 @@ namespace AppUsers.Domain.Infra.Repositories
 
         public void Update(T entity)
         {
-            _appUsersContext.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            _appUsersContext.Entry(entity).State = EntityState.Modified;
         }
 
         public IEnumerable<T> GetAll()
