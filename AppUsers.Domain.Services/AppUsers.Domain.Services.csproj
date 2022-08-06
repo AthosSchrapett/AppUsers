@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AppUsers.Domain.Core\AppUsers.Domain.Interfaces.csproj" />
+    <ProjectReference Include="..\AppUsers.Domain.Infra\AppUsers.Domain.Infra.csproj" />
+  </ItemGroup>
+
+</Project>
