@@ -1,0 +1,19 @@
+<div class="sidebar" [ngClass]="{ 'expanded': isExpanded }">
+  <div class="header">
+    <h1 class="title">
+      App-Users
+    </h1>
+    <div class="toggle" (click)="handleSidebarToggle()">
+      <span class="toggle-button"></span>
+    </div>
+  </div>
+  <div class="content">
+    <div class="link">
+      <div class="content">
+        <fa-icon [icon]="fonte.faUser"></fa-icon>
+        <div class="title">Usuários</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"></div>
+</div>

@@ -1,0 +1,30 @@
+<div class="row">
+  <h1>Usuários</h1>
+  <div class="col-12">
+    <div class="row linha-botao">
+      <input type="button" class="button-novo" value="Novo Usuário">
+    </div>
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead class="thead-dark">
+          <tr>
+            <th *ngFor="let col of cols" scope="col">{{ col.colName }}</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let user of users">
+          <tr>
+            <th scope="row">{{ user.nome }}</th>
+            <th scope="row">{{ user.sobrenome }}</th>
+            <th scope="row">{{ user.email }}</th>
+            <th scope="row">{{ user.dataNascimento }}</th>
+            <th scope="row">{{ user.escolaridade }}</th>
+            <th scope="row">
+              <input type="button" class="button-edit" value="Editar">
+              <input type="button" class="button-excluir" value="Excluir">
+            </th>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
