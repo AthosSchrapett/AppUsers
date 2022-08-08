@@ -1,8 +1,8 @@
 <div class="row">
   <h1>Usuários</h1>
-  <div class="col-12">
+  <div class="col-12" *ngIf="editaValidacao === false">
     <div class="row linha-botao">
-      <input type="button" class="button-novo" value="Novo Usuário">
+      <input type="button" class="button-novo" value="Novo Usuário" routerLink="/new-user">
     </div>
     <div class="table-responsive">
       <table class="table align-middle">
@@ -16,15 +16,93 @@
             <th scope="row">{{ user.nome }}</th>
             <th scope="row">{{ user.sobrenome }}</th>
             <th scope="row">{{ user.email }}</th>
-            <th scope="row">{{ user.dataNascimento }}</th>
-            <th scope="row">{{ user.escolaridade }}</th>
+            <th scope="row">{{ user.dataNascimento | date : 'dd/MM/yyyy' }}</th>
+            <th scope="row">{{ retornaEscolaridade(user.escolaridade) }}</th>
             <th scope="row">
-              <input type="button" class="button-edit" value="Editar">
-              <input type="button" class="button-excluir" value="Excluir">
+              <input type="button" class="button-edit" value="Editar" (click)="abrirTelaEdicao(user)">
+              <input type="button" class="button-excluir" value="Excluir" (click)="abrirModalExclusao(user.id)">
             </th>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-</div>
+
+  <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyleExclusao}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Exclusão</h4>
+        </div>
+        <div class="modal-body">
+          <p>Confirma a exclusão do Usuário?</p>
+        </div>
+        <div class="modal-footer">
+          <input type="button" class="button-fechar" value="Fechar" (click)="fecharModalExclusao()">
+          <input type="button" class="button-excluir" value="Confirma" (click)="excluiUsuario(idExclusao)">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12" *ngIf="editaValidacao">
+    <form [formGroup]="formUsuario" (ngSubmit)="editaUsuario(userEdicao)">
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" formControlName="nome" [(ngModel)]="userEdicao.nome">
+          <div class="alert alert-warning" *ngIf="form.nome.touched && form.nome.errors?.required">
+            Por favor, informe seu nome.
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label for="sobrenome">Sobrenome</label>
+          <input type="text" class="form-control" formControlName="sobrenome" [(ngModel)]="userEdicao.sobrenome">
+          <div class="alert alert-warning" *ngIf="form.sobrenome.touched && form.sobrenome.errors?.required">
+            Por favor, informe seu sobrenome.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="name@example.com" [(ngModel)]="userEdicao.email">
+          <div class="alert alert-warning" *ngIf="form.email.touched && form.email.errors?.required">
+            Por favor, informe seu email.
+          </div>
+          <div class="alert alert-danger" *ngIf="form.email.errors?.email">
+            Por favor, informe um email válido.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input type="date" class="form-control" formControlName="dataNascimento" [(ngModel)]="userEdicao.dataNascimento" (blur)="dateValidator(form.dataNascimento.value)">
+          <div class="alert alert-warning" *ngIf="form.dataNascimento.touched && form.dataNascimento.errors?.required">
+            Por favor, informe sua Data de Nascimento.
+          </div>
+          <div class="alert alert-danger" *ngIf="form.dataNascimento.touched && form.dataNascimento.errors?.required && (validaData === true && validaData != null)">
+            Por favor, informe uma Data de Nascimento válida.
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label for="escolaridade">Escolaridade</label>
+          <select
+            class="form-control"
+            formControlName="escolaridade"
+            [(ngModel)]="userEdicao.escolaridade"
+            >
+            <option *ngFor="let escolaridade of escolaridades" [value]="escolaridade.valor">{{ escolaridade.classificacao }}</option>
+          </select>
+          <div class="alert alert-warning" *ngIf="form.escolaridade.touched && form.escolaridade.errors?.required">
+            Por favor, informe sua escolaridade.
+          </div>
+        </div>
+      </div>
+      <div class="row linha-botao">
+        <input type="submit" class="button-submit" value="Editar">
+        <input type="button" class="button-voltar" value="voltar" (click)="fecharTelaEdicao()">
+      </div>
+    </form>
+  </div>

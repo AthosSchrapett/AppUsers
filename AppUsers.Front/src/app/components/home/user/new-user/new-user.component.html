@@ -1,0 +1,62 @@
+<div class="row">
+  <h1>Novo Usuário</h1>
+  <div class="col-12">
+    <form [formGroup]="formUsuario" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" formControlName="nome">
+          <div class="alert alert-warning" *ngIf="form.nome.touched && form.nome.errors?.required">
+            Por favor, informe seu nome.
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label for="sobrenome">Sobrenome</label>
+          <input type="text" class="form-control" formControlName="sobrenome">
+          <div class="alert alert-warning" *ngIf="form.sobrenome.touched && form.sobrenome.errors?.required">
+            Por favor, informe seu sobrenome.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-12">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" formControlName="email" placeholder="name@example.com">
+          <div class="alert alert-warning" *ngIf="form.email.touched && form.email.errors?.required">
+            Por favor, informe seu email.
+          </div>
+          <div class="alert alert-danger" *ngIf="form.email.errors?.email">
+            Por favor, informe um email válido.
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-6">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input type="date" class="form-control" formControlName="dataNascimento" (blur)="dateValidator(form.dataNascimento.value)">
+          <div class="alert alert-warning" *ngIf="form.dataNascimento.touched && form.dataNascimento.errors?.required">
+            Por favor, informe sua Data de Nascimento.
+          </div>
+          <div class="alert alert-danger" *ngIf="form.dataNascimento.touched && form.dataNascimento.errors?.required && (validaData === true && validaData != null)">
+            Por favor, informe uma Data de Nascimento válida.
+          </div>
+        </div>
+        <div class="form-group col-6">
+          <label for="escolaridade">Escolaridade</label>
+          <select
+            class="form-control"
+            formControlName="escolaridade"
+            >
+            <option *ngFor="let escolaridade of escolaridades" [value]="escolaridade.valor">{{ escolaridade.classificacao }}</option>
+          </select>
+          <div class="alert alert-warning" *ngIf="form.escolaridade.touched && form.escolaridade.errors?.required">
+            Por favor, informe sua escolaridade.
+          </div>
+        </div>
+      </div>
+      <div class="row linha-botao">
+        <input type="submit" class="button-submit" value="Cadastrar">
+      </div>
+    </form>
+  </div>
+</div>

@@ -9,7 +9,7 @@ import { Observable, retry } from 'rxjs';
 })
 export class UserService {
 
-  baseUrl: string = environment.AppUsersApi + '/User/'
+  baseUrl: string = `${environment.AppUsersApi}/User/`;
 
   constructor(
     private httpClient: HttpClient
@@ -26,17 +26,17 @@ export class UserService {
   }
 
   postUser(user: User): Observable<User> {
-    return this.httpClient.get<User>(this.baseUrl)
+    return this.httpClient.post<User>(this.baseUrl, user)
       .pipe(retry(1));
   }
 
-  putUser(user: User): Observable<User> {
-    return this.httpClient.get<User>(this.baseUrl)
+  putUser(id: number, user: User): Observable<User> {
+    return this.httpClient.put<User>(this.baseUrl + id, user)
       .pipe(retry(1));
   }
 
   DeleteUser(id: number): Observable<User> {
-    return this.httpClient.get<User>(this.baseUrl)
+    return this.httpClient.delete<User>(`${this.baseUrl}${id}`)
       .pipe(retry(1));
   }
 }

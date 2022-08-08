@@ -1,3 +1,7 @@
+.toggle {
+  display: contents;
+}
+
 .toggle-button::before {
   border-style: solid;
   border-width: 0.15em 0.15em 0 0;
@@ -10,7 +14,6 @@
   vertical-align: top;
   width: 0.35em;
 }
-
 .sidebar {
   position: fixed;
   left: 0;
@@ -37,6 +40,9 @@
   max-width: 100px;
 }
 
+.sidebar.expanded .content .link .children .content {
+  padding-left: 30px;
+}
 .sidebar .header {
   display: flex;
   align-items: center;
@@ -62,6 +68,8 @@
   height: 20px;
   display: block;
   text-align: center;
+  padding: unset;
+  font-size: 25px;
 }
 .sidebar .header .toggle-button::before {
   transition: 0.3s;

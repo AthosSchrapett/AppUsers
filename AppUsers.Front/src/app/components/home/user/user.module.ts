@@ -1,20 +1,21 @@
-import { UserRoutes } from './user/user.routing';
+import { UserRoutes } from './user.routing';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './user/user.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserComponent } from './user.component';
 
 @NgModule({
   declarations: [
-    UserComponent
+    UserComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(UserRoutes),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
-export class HomeModule { }
+export class UserModule { }

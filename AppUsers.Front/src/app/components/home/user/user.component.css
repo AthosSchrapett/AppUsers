@@ -1,5 +1,5 @@
 * {
-  padding: 5px 20px 0px 10px;
+  padding: 5px 20px 10px 10px;
 }
 
 .linha-botao {
@@ -41,6 +41,43 @@
   padding: initial;
 }
 
-.button-novo:hover, .button-edit:hover, .button-excluir:hover {
+.button-fechar {
+  background-color: rgb(112, 81, 253);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  width: 100px;
+  height: 40px;
+  padding: initial;
+}
+
+.button-voltar {
+  background-color: rgb(112, 81, 253);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  width: 130px;
+  height: 40px;
+  padding: initial;
+  margin-right: 5px;
+}
+
+.button-submit {
+  background-color: rgb(3, 139, 128);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  width: 130px;
+  height: 40px;
+  padding: initial;
+  margin-right: 20px;
+}
+
+.button-novo:hover, .button-edit:hover, .button-excluir:hover, .button-fechar:hover, .button-voltar:hover .button-submit:hover {
   background-color: #26293d;
 }

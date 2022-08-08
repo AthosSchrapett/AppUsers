@@ -8,6 +8,10 @@ export const AppRoutes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () => import('../app/components/home/home.module').then(x => x.HomeModule)
+    loadChildren: () => import('../app/components/home/user/user.module').then(x => x.UserModule)
+  },
+  {
+    path: 'new-user',
+    loadChildren: () => import('../app/components/home/user/new-user/new-user.module').then(x => x.NewUserModule)
   },
 ];
