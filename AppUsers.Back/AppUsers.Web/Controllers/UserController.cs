@@ -1,7 +1,5 @@
 ﻿using AppUsers.Domain.Interfaces.Services;
 using AppUsers.Domain.Models;
-using AppUsers.Domain.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AppUsers.Web.Controllers
@@ -60,7 +58,7 @@ namespace AppUsers.Web.Controllers
         }
 
         [HttpPut("{id}")]
-        public void UserPut(int id, [FromBody] User user)
+        public void UserPut([FromBody] User user)
         {
             try
             {

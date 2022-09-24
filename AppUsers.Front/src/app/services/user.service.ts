@@ -31,7 +31,8 @@ export class UserService {
   }
 
   putUser(id: number, user: User): Observable<User> {
-    return this.httpClient.put<User>(this.baseUrl + id, user)
+    console.log(user)
+    return this.httpClient.put<User>(this.baseUrl + user.id, user)
       .pipe(retry(1));
   }
 

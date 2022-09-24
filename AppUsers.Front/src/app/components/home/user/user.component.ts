@@ -15,7 +15,6 @@ export class UserComponent implements OnInit, OnDestroy {
 
   users: User[] = [];
   user: User = new User();
-  userEdicao: User = new User();
   confirmaExclusao: boolean = false;
   editaValidacao: boolean = false;
   listening: boolean = true;
@@ -68,6 +67,8 @@ export class UserComponent implements OnInit, OnDestroy {
     .pipe(takeWhile(() => this.listening))
     .subscribe(
       (res: User) => {
+        console.log(res);
+        this.formUsuario.setValue(res);
         this.user = res;
       }
     );
@@ -84,7 +85,8 @@ export class UserComponent implements OnInit, OnDestroy {
 
   abrirTelaEdicao(user: User) {
     this.editaValidacao = true;
-    this.userEdicao = user;
+    this.buscarUsuarioPorId(user.id);
+    // this.userEdicao = user;
   }
 
   fecharTelaEdicao() {
@@ -102,8 +104,8 @@ export class UserComponent implements OnInit, OnDestroy {
     );
   }
 
-  editaUsuario(user: User): void {
-    this.userService.putUser(user.id, user)
+  editaUsuario(): void {
+    this.userService.putUser(this.form.id.value, this.formUsuario.value)
     .pipe(takeWhile(() => this.listening))
     .subscribe(
       () => {
@@ -114,6 +116,7 @@ export class UserComponent implements OnInit, OnDestroy {
   }
 
   formUsuario = new FormGroup({
+    id: new FormControl(''),
     nome: new FormControl('', [Validators.required]),
     sobrenome: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -144,8 +147,6 @@ export class UserComponent implements OnInit, OnDestroy {
         this.validaData = true;
       }
     }
-
-    console.log(dataInput.getDate())
   }
 
   retornaEscolaridade(valor: number): string {
