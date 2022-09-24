@@ -112,6 +112,7 @@ export class UserComponent implements OnInit, OnDestroy {
         this.fecharTelaEdicao();
         this.router.navigate(['/user']);
       }
+
     );
   }
 
